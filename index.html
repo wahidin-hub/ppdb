@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PPDB - SMAN Contoh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0f62fe;
+      --bg: #f9f9f9;
+      --text: #333;
+      --white: #ffffff;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .nav-container h1 {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #0f62fe, #4085ff);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .btn {
+      background-color: var(--white);
+      color: var(--primary);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    form {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, button {
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    button {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0047b3;
+    }
+
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: var(--white);
+        flex-direction: column;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        box-shadow: var(--shadow);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <h1>PPDB SMAN</h1>
+      <nav>
+        <div class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#panduan">Panduan</a></li>
+          <li><a href="#formulir">Daftar</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="beranda">
+    <h2>Selamat Datang di PPDB SMAN Contoh</h2>
+    <p>Daftarkan dirimu untuk tahun ajaran 2025/2026</p>
+    <a href="#formulir" class="btn">Daftar Sekarang</a>
+  </section>
+
+  <!-- Tentang -->
+  <section id="tentang">
+    <h3>Tentang Sekolah</h3>
+    <p>SMAN Contoh adalah sekolah berbasis teknologi dan karakter dengan berbagai prestasi akademik dan non-akademik.</p>
+  </section>
+
+  <!-- Panduan -->
+  <section id="panduan">
+    <h3>Panduan PPDB</h3>
+    <ul>
+      <li>Isi formulir pendaftaran dengan lengkap dan benar</li>
+      <li>Verifikasi oleh panitia</li>
+      <li>Pengumuman hasil seleksi online</li>
+    </ul>
+  </section>
+
+  <!-- Formulir -->
+  <section id="formulir">
+    <h3>Formulir Pendaftaran</h3>
+    <form id="ppdbForm">
+      <input type="text" placeholder="Nama Lengkap" required />
+      <input type="text" placeholder="NISN" required />
+      <input type="text" placeholder="Sekolah Asal" required />
+      <input type="text" placeholder="Alamat Lengkap" required />
+      <input type="tel" placeholder="Nomor HP Aktif" required />
+      <button type="submit">Kirim Pendaftaran</button>
+    </form>
+  </section>
+
+  <!-- Kontak -->
+  <section id="kontak">
+    <h3>Kontak Kami</h3>
+    <p>Email: info@smancontoh.sch.id</p>
+    <p>WhatsApp: 0812-3456-7890</p>
+    <p>Alamat: Jl. Pendidikan No.123, Kota Contoh</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SMAN Contoh. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Toggle menu mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Form alert
+    document.getElementById("ppdbForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Terima kasih! Formulir berhasil dikirim.");
+    });
+
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    const showOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const boxTop = sec.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+          sec.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', showOnScroll);
+    window.addEventListener('load', showOnScroll);
+  </script>
+</body>
+</html>
