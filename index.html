@@ -2,322 +2,223 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PPDB - SMAN Contoh</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran Siswa Baru - Akademi Cendekia Internasional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    :root {
-      --primary: #0f62fe;
-      --bg: #f9f9f9;
-      --text: #333;
-      --white: #ffffff;
-      --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
+      background: #f4f7fa;
+      color: #1f2d3d;
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
     header {
-      background-color: var(--white);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
+      background: #ffffff;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    .nav-container h1 {
-      color: var(--primary);
-      font-size: 1.5rem;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #003366;
     }
-
-    .nav-links {
+    nav ul {
+      list-style: none;
       display: flex;
       gap: 1.5rem;
-      list-style: none;
     }
-
-    .nav-links li a {
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links li a:hover {
-      color: var(--primary);
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background-color: var(--text);
-      margin: 4px 0;
-      transition: all 0.3s ease;
-    }
-
-    .hero {
-      background: linear-gradient(to right, #0f62fe, #4085ff);
-      color: var(--white);
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      animation: fadeInUp 1.2s ease forwards;
-    }
-
-    .btn {
-      background-color: var(--white);
-      color: var(--primary);
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
+    nav a {
+      text-decoration: none;
+      color: #1f2d3d;
       font-weight: 600;
-      transition: 0.3s;
+      position: relative;
     }
-
-    .btn:hover {
-      background-color: var(--primary);
-      color: var(--white);
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #003366;
+      transition: width 0.3s ease;
     }
-
+    nav a:hover::after {
+      width: 100%;
+    }
+    .hero {
+      padding: 5rem 2rem;
+      background: url('https://images.unsplash.com/photo-1571260899304-425eee4c7efc') no-repeat center/cover;
+      color: #ffffff;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+    .hero .btn {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: #ffffff;
+      color: #003366;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+    .hero .btn:hover {
+      background: #003366;
+      color: #ffffff;
+    }
     section {
-      max-width: 900px;
+      max-width: 1100px;
       margin: auto;
       padding: 4rem 2rem;
       opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(40px);
+      transition: 0.8s ease;
     }
-
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
-    section h3 {
-      font-size: 1.8rem;
-      color: var(--primary);
+    h2 {
+      font-size: 2.4rem;
+      color: #003366;
       margin-bottom: 1.2rem;
     }
-
+    p {
+      line-height: 1.8;
+    }
     form {
-      background-color: var(--white);
+      background: #ffffff;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
-
-    input, button {
+    input, textarea, button {
       padding: 1rem;
       font-size: 1rem;
       border-radius: 6px;
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
     }
-
-    input:focus {
+    input:focus, textarea:focus {
+      border-color: #003366;
       outline: none;
-      border-color: var(--primary);
     }
-
     button {
-      background-color: var(--primary);
-      color: var(--white);
-      border: none;
-      font-weight: 600;
+      background: #003366;
+      color: #ffffff;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
-
     button:hover {
-      background-color: #0047b3;
+      background: #001f4d;
     }
-
     footer {
-      background-color: #eee;
+      background: #001f4d;
+      color: #ffffff;
       text-align: center;
       padding: 2rem;
-      font-size: 0.9rem;
-      margin-top: 4rem;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background-color: var(--white);
-        flex-direction: column;
-        width: 200px;
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        box-shadow: var(--shadow);
-        display: none;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
-    <div class="nav-container">
-      <h1>PPDB SMAN</h1>
-      <nav>
-        <div class="menu-toggle" id="menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#beranda">Beranda</a></li>
-          <li><a href="#tentang">Tentang</a></li>
-          <li><a href="#panduan">Panduan</a></li>
-          <li><a href="#formulir">Daftar</a></li>
-          <li><a href="#kontak">Kontak</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="logo">PPDB MABASH</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#visi">Visi & Misi</a></li>
+        <li><a href="#daftar">Daftar</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="beranda">
-    <h2>Selamat Datang di PPDB SMAN Contoh</h2>
-    <p>Daftarkan dirimu untuk tahun ajaran 2025/2026</p>
-    <a href="#formulir" class="btn">Daftar Sekarang</a>
+  <section class="hero" id="home">
+    <h1>Selamat Datang di Akademi Cendekia Internasional</h1>
+    <p>Mengembangkan Pemimpin Masa Depan dengan Pendidikan Bertaraf Global</p>
+    <a href="#daftar" class="btn">Daftar Sekarang</a>
   </section>
 
-  <!-- Tentang -->
   <section id="tentang">
-    <h3>Tentang Sekolah</h3>
-    <p>SMAN Contoh adalah sekolah berbasis teknologi dan karakter dengan berbagai prestasi akademik dan non-akademik.</p>
+    <h2>Tentang Sekolah Kami</h2>
+    <p>Akademi Cendekia Internasional adalah institusi pendidikan yang berfokus pada pengembangan karakter, akademik, dan kepemimpinan siswa dalam lingkungan multikultural dan berbasis teknologi. Kami menghadirkan kurikulum nasional dan internasional dengan pendekatan pembelajaran aktif dan kolaboratif.</p>
   </section>
 
-  <!-- Panduan -->
-  <section id="panduan">
-    <h3>Panduan PPDB</h3>
-    <ul>
-      <li>Isi formulir pendaftaran dengan lengkap dan benar</li>
-      <li>Verifikasi oleh panitia</li>
-      <li>Pengumuman hasil seleksi online</li>
+  <section id="visi">
+    <h2>Visi & Misi</h2>
+    <h3>Visi:</h3>
+    <p>Menjadi lembaga pendidikan unggulan yang menghasilkan generasi global yang berintegritas, inovatif, dan peduli terhadap sesama.</p>
+
+    <h3>Misi:</h3>
+    <ul style="margin-top: 1rem; list-style: disc; padding-left: 1.5rem;">
+      <li>Menyelenggarakan pendidikan berkualitas tinggi dengan standar internasional.</li>
+      <li>Mengembangkan potensi siswa melalui kegiatan akademik dan non-akademik.</li>
+      <li>Membentuk karakter yang jujur, tangguh, dan berwawasan global.</li>
+      <li>Mendorong kolaborasi antara sekolah, orang tua, dan masyarakat.</li>
     </ul>
   </section>
 
-  <!-- Formulir -->
-  <section id="formulir">
-    <h3>Formulir Pendaftaran</h3>
-    <form id="ppdbForm">
+  <section id="daftar">
+    <h2>Formulir Pendaftaran</h2>
+    <form>
       <input type="text" placeholder="Nama Lengkap" required />
-      <input type="text" placeholder="NISN" required />
-      <input type="text" placeholder="Sekolah Asal" required />
-      <input type="text" placeholder="Alamat Lengkap" required />
-      <input type="tel" placeholder="Nomor HP Aktif" required />
+      <input type="text" placeholder="NISN atau Nomor Paspor" required />
+      <input type="text" placeholder="Asal Sekolah" required />
+      <textarea placeholder="Alamat Lengkap" rows="4" required></textarea>
+      <input type="tel" placeholder="Nomor Telepon" required />
       <button type="submit">Kirim Pendaftaran</button>
     </form>
   </section>
 
-  <!-- Kontak -->
   <section id="kontak">
-    <h3>Kontak Kami</h3>
-    <p>Email: info@smancontoh.sch.id</p>
-    <p>WhatsApp: 0812-3456-7890</p>
-    <p>Alamat: Jl. Pendidikan No.123, Kota Contoh</p>
+    <h2>Hubungi Kami</h2>
+    <p>Email: pendaftaran@cendekiainternasional.sch.id</p>
+    <p>Telepon: +62 812-3456-7890</p>
+    <p>Alamat: Jl. Pendidikan Internasional No.123, Kota Edukasi</p>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 SMAN Contoh. All rights reserved.</p>
+    <p>&copy; 2025 Akademi Cendekia Internasional. Seluruh hak cipta dilindungi.</p>
   </footer>
 
-  <!-- Script -->
   <script>
-    // Toggle menu mobile
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Form alert
-    document.getElementById("ppdbForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Terima kasih! Formulir berhasil dikirim.");
-    });
-
-    // Scroll animation
-    const sections = document.querySelectorAll('section');
-    const showOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
+    const sections = document.querySelectorAll("section");
+    const reveal = () => {
+      const trigger = window.innerHeight * 0.9;
       sections.forEach(sec => {
-        const boxTop = sec.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          sec.classList.add('visible');
-        }
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add("visible");
       });
     };
-    window.addEventListener('scroll', showOnScroll);
-    window.addEventListener('load', showOnScroll);
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
   </script>
 </body>
 </html>
